@@ -16,13 +16,13 @@ public class UserProfileDao {
   }
 
   public void createUserProfile(String username, String email) {
-    String sql = "INSERT INTO user_profile (username, email) VALUES (?, ?)";
-    jdbcTemplate.update(sql, username, email);
+    String sql = "INSERT INTO user_profile (username, email) VALUES ('" + username + "', '" + email + "')";
+    jdbcTemplate.execute(sql);
   }
 
   public void updateUserProfile(int id, String username, String email) {
-    String sql = "UPDATE user_profile SET username = ?, email = ? WHERE id = ?";
-    jdbcTemplate.update(sql, username, email, id);
+    String sql = "UPDATE user_profile SET username = '" + username + "', email = '" + email + "' WHERE id = " + id;
+    jdbcTemplate.execute(sql);
   }
 
   public List<UserProfile> readUserProfiles() {

@@ -18,13 +18,13 @@ public class TradeDao {
   }
 
   public void createTrade(String symbol, String tradeType, int quantity, BigDecimal price) {
-    String sql = "INSERT INTO trade (symbol, trade_type, quantity, price) VALUES (?, ?, ?, ?)";
-    jdbcTemplate.update(sql, symbol, tradeType, quantity, price);
+    String sql = "INSERT INTO trade (symbol, trade_type, quantity, price) VALUES ('" + symbol + "', '" + tradeType + "', " + quantity + ", " + price + ")";
+    jdbcTemplate.execute(sql);
   }
 
   public void updateTrade(int id, String symbol, String tradeType, int quantity, BigDecimal price) {
-    String sql = "UPDATE trade SET symbol = ?, trade_type = ?, quantity = ?, price = ? WHERE id = ?";
-    jdbcTemplate.update(sql, symbol, tradeType, quantity, price, id);
+    String sql = "UPDATE trade SET symbol = '" + symbol + "', trade_type = '" + tradeType + "', quantity = " + quantity + ", price = " + price + " WHERE id = " + id;
+    jdbcTemplate.execute(sql);
   }
 
   public List<Trade> readTrades() {
