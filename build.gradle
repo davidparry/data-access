@@ -33,3 +33,10 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+jacocoTestReport {
+    dependsOn test
+    reports {
+        csv.required = true
+        xml.required = true
+    }
+}
