@@ -27,7 +27,7 @@ class OrderTest {
   @Test
   public void test_set_null_values_for_order_fields() {
     Order order = new Order();
-    order.setOrderNumber("");
+    order.setOrderNumber(null);
     order.setOrderDate(null);
 
     assertNull(order.getOrderNumber());
