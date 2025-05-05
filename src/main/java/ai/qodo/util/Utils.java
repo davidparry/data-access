@@ -1,21 +1,19 @@
 package ai.qodo.util;
 
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 public class Utils {
-    public static final Logger LOGGER = LoggerFactory.getLogger(Utils.class);
 
-    public static String getResourceAsString(String resource) {
+    public byte[] getBytesOfTwoString(String first, String second) {
         try {
-            return IOUtils.toString(Utils.class.getResourceAsStream(resource), StandardCharsets.UTF_8);
+            byte[] firstArray = IOUtils.toByteArray(first);
+            byte[] secondArray = IOUtils.toByteArray(second);
+            return new byte[firstArray.length + secondArray.length];
         } catch (IOException e) {
-            LOGGER.error("Failed to read resource: {}", resource, e);
-            return "";
+            throw new RuntimeException(e);
         }
     }
+
 }
