@@ -1,17 +1,18 @@
 package ai.qodo;
 
 import ai.qodo.dao.*;
-import ai.qodo.pojo.*;
-import ai.qodo.util.Utils;
+import ai.qodo.pojo.Order;
+import ai.qodo.pojo.Stock;
+import ai.qodo.pojo.Trade;
+import ai.qodo.pojo.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
+
 import java.math.BigDecimal;
-import java.nio.charset.Charset;
 import java.util.List;
 
 @SpringBootApplication
@@ -42,7 +43,7 @@ public class DataAccessApplication {
             userProfileDao.createUserProfile("John", "d@eami.com");
             List<UserProfile> profileDaoList = userProfileDao.readUserProfiles();
             System.out.println(profileDaoList.get(0));
-            userProfileDao.updateUserProfile(profileDaoList.get(0).getId(),"Found", "jacko@micked.com");
+            userProfileDao.updateUserProfile(profileDaoList.get(0).getId(), "Found", "jacko@micked.com");
             profileDaoList = userProfileDao.readUserProfiles();
 
             UserProfile profileOne = profileDaoList.get(0);
@@ -71,8 +72,6 @@ public class DataAccessApplication {
             tradeDao.updateTrade(trades.get(0).getId(), "AAPL", "SELL", 25, new BigDecimal("155.00"));
             trades = tradeDao.readTrades();
             System.out.println("Updated Trade: " + trades.get(0));
-
-
 
 
         };
