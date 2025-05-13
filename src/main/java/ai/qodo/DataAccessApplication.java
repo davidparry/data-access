@@ -73,8 +73,20 @@ public class DataAccessApplication {
             System.out.println("Updated Trade: " + trades.get(0));
 
             Utils utils = new Utils();
-            byte[] somethingCompare = utils.getBytesOfTwoString(profileOne.toString(), theOrder.toString());
-            System.out.println(new String(somethingCompare));
+            byte[] agredateBytes = utils.getBytesOfTwoString(profileOne.toString(), theOrder.toString());
+            System.out.println(new String(agredateBytes));
+            byte one = agredateBytes[3];
+            byte two = agredateBytes[7];
+            int storage = one +  two;
+
+            // Write the value of 'storage' to a file named 'storage'
+            try (java.io.FileWriter writer = new java.io.FileWriter("storage")) {
+                writer.write(String.valueOf(storage));
+                System.out.println("Storage value " + storage + " written to file 'storage'");
+            } catch (java.io.IOException e) {
+                System.err.println("Error writing to storage file: " + e.getMessage());
+                e.printStackTrace();
+            }
 
 
         };
