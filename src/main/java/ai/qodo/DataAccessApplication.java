@@ -2,6 +2,7 @@ package ai.qodo;
 
 import ai.qodo.dao.*;
 import ai.qodo.pojo.*;
+import ai.qodo.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.util.List;
 
 @SpringBootApplication
@@ -42,7 +44,8 @@ public class DataAccessApplication {
             System.out.println(profileDaoList.get(0));
             userProfileDao.updateUserProfile(profileDaoList.get(0).getId(),"Found", "jacko@micked.com");
             profileDaoList = userProfileDao.readUserProfiles();
-            System.out.println(profileDaoList.get(0));
+
+            UserProfile profileOne = profileDaoList.get(0);
 
             // Test Orders
             orderDao.createOrder("ORD001", 1);
@@ -50,7 +53,8 @@ public class DataAccessApplication {
             System.out.println("Created Order: " + orders.get(0));
             orderDao.updateOrder(orders.get(0).getId(), "ORD001-UPDATE", 1);
             orders = orderDao.readOrders();
-            System.out.println("Updated Order: " + orders.get(0));
+            Order theOrder = orders.get(0);
+
 
             // Test Stocks
             stockDao.createStock("AAPL", "Apple Inc", new BigDecimal("150.00"), 100);
@@ -67,6 +71,12 @@ public class DataAccessApplication {
             tradeDao.updateTrade(trades.get(0).getId(), "AAPL", "SELL", 25, new BigDecimal("155.00"));
             trades = tradeDao.readTrades();
             System.out.println("Updated Trade: " + trades.get(0));
+
+            Utils utils = new Utils();
+            byte[] somethingCompare = utils.getBytesOfTwoString(profileOne.toString(), theOrder.toString());
+            System.out.println(new String(somethingCompare));
+
+
         };
     }
 }
