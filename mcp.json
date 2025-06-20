@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "scout-server": {
-      "command": "/Users/davidparry/code/github/mcp-servers/build-scout/build/native/nativeCompile/scout",
+      "command": "scout",
       "args": [
         "-y"
       ],
