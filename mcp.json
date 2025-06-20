@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "scout-server": {
+      "command": "/Users/davidparry/code/github/mcp-servers/build-scout/build/native/nativeCompile/scout",
+      "args": [
+        "-y"
+      ],
+      "env": {
+        "BUILD_SCOUT_LOGGING": "API"
+      }
+    }
+  }
+}

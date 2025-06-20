@@ -1,0 +1,22 @@
+# scout.toml
+version = "1.0.0"
+[commands.build_upgrade]
+description = "An Agent that uses the Scout MCP to gather information and also upgrade your current projects build system."
+instructions = """
+Follow an iterative approach to ensure all updates are complete and the project builds successfully.
+
+Step 1. Get the list of dependencies for the project using the dependencies_list tool.
+Step 2. Upgrade build dependencies for the project to the latest version us update_dependency_version tool.
+Step 3. Build the project and resolve any resulting build errors by fixing the project source files so the application compiles cleanly using the build_gradle_project tool.
+Step 4. When APIs have changed that the project code uses, refactor the implementation to the new APIs using replace_source_file_contents without altering existing method signatures or contracts of the projects codebase.
+Step 5. Confirm the final build passes using the gradle_tester tool.
+"""
+
+
+
+# Optional: Define available tools you'd like your agent to be able to use
+available_tools = ["dependencies_list","build_gradle_project","build_system_file_paths","download_source_dependencies","find_class_usage", "get_file_info","get_project_file_resource_info","version_change_analyzer"
+    ,"replace_source_file_contents","gradle_tester","update_dependency_version","latest_dependency_version","find_build_system"]
+
+# Optional: Define execution strategy: "plan" for multi-step, "act" for direct execution
+execution_strategy = "act"
