@@ -1,5 +1,20 @@
 version = "1.0"
 
 imports = [
-    "agents/build_upgrade.toml"
+    "agents/upgrade.toml"
 ]
+#- gpt-4.1
+#- gpt-4o
+#- o3
+#- o4-mini
+#- claude-4-sonnet
+#- claude-4-opus
+#- gemini-2.5-pro
+
+#model = ""
+
+available_tools = ["scout-server.dependencies_list","scout-server.build_gradle_project","scout-server.build_system_file_paths"
+    ,"scout-server.download_source_dependencies","scout-server.find_class_usage", "scout-server.get_file_info"
+    ,"scout-server.get_project_file_resource_info","scout-server.version_change_analyzer"
+    ,"scout-server.replace_source_file_contents","scout-server.gradle_tester"
+    ,"scout-server.update_dependency_version","scout-server.latest_dependency_version","scout-server.find_build_system"]
