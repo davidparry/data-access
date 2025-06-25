@@ -10,7 +10,21 @@ Step 2. Upgrade build dependencies for the project to the latest version using t
 Step 3. Build the project and resolve any resulting build errors by fixing the project source files so the application compiles cleanly using the build_gradle_project tool. Do not downgrade the upgraded dependency that you did in step 2.
 Step 4. When APIs have changed that the project code uses, refactor the implementation to the new APIs using replace_source_file_contents without altering existing method signatures or contracts of the projects codebase.
 Step 5. Confirm the final build passes using the gradle_tester tool.
+Step 6. After gradle_tester passes, print out the word `success`.
 """
 
 # Optional: Define execution strategy: "plan" for multi-step, "act" for direct execution
 execution_strategy = "act"
+
+output_schema = """
+{
+    "properties": {
+        "success": {
+            "description": "Whether the task completed successfully",
+            "type": "boolean"
+        }
+    }
+}
+"""
+
+exit_expression = "success"

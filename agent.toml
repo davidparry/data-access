@@ -2,6 +2,7 @@ version = "1.0"
 
 imports = [
     "agents/upgrade.toml"
+
 ]
 #- gpt-4.1
 #- gpt-4o
@@ -11,7 +12,7 @@ imports = [
 #- claude-4-opus
 #- gemini-2.5-pro
 
-#model = ""
+#model = "gpt-4.1"
 
 available_tools = ["scout-server.dependencies_list","scout-server.build_gradle_project","scout-server.build_system_file_paths"
     ,"scout-server.download_source_dependencies","scout-server.find_class_usage", "scout-server.get_file_info"
