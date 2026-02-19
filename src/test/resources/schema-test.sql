@@ -1,0 +1,39 @@
+-- H2 database schema for tests
+-- H2 v2.x syntax: GENERATED AS IDENTITY must be specified before PRIMARY KEY
+
+DROP TABLE IF EXISTS stock;
+DROP TABLE IF EXISTS user_profile;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS trade;
+
+CREATE TABLE stock (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    symbol VARCHAR(10) NOT NULL,
+    company_name VARCHAR(100),
+    current_price DECIMAL(10,2),
+    quantity INT,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_profile (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE orders (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    order_number VARCHAR(50) NOT NULL,
+    customer_id INT,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE trade (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    symbol VARCHAR(10) NOT NULL,
+    trade_type VARCHAR(10),
+    quantity INT,
+    price DECIMAL(10,2),
+    trade_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
