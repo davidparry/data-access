@@ -16,14 +16,22 @@ public class OrderDao {
     this.jdbcTemplate = jdbcTemplate;
   }
 
+  // VULNERABILITY: SQL Injection - user input concatenated directly into query
   public void createOrder(String orderNumber, int customerId) {
-    String sql = "INSERT INTO orders (order_number, customer_id) VALUES (?, ?)";
-    jdbcTemplate.update(sql, orderNumber, customerId);
+    String sql = "INSERT INTO orders (order_number, customer_id) VALUES ('" + orderNumber + "', " + customerId + ")";
+    jdbcTemplate.execute(sql);
   }
 
+  // VULNERABILITY: SQL Injection - user input concatenated directly into query
   public void updateOrder(int id, String orderNumber, int customerId) {
-    String sql = "UPDATE orders SET order_number = ?, customer_id = ? WHERE id = ?";
-    jdbcTemplate.update(sql, orderNumber, customerId, id);
+    String sql = "UPDATE orders SET order_number = '" + orderNumber + "', customer_id = " + customerId + " WHERE id = " + id;
+    jdbcTemplate.execute(sql);
+  }
+
+  // VULNERABILITY: SQL Injection - user input concatenated directly into query
+  public List<Order> findOrdersByCustomer(String customerName) {
+    String sql = "SELECT * FROM orders WHERE customer_name = '" + customerName + "'";
+    return jdbcTemplate.query(sql, new OrderRowMapper());
   }
 
   public List<Order> readOrders() {
